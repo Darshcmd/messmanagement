@@ -10,19 +10,6 @@ A **full-stack hostel mess management system** for VIT students to view weekly m
 
 ---
 
-## Screenshots
-
-**Dashboard (Student View)**
-![Student Dashboard](path/to/student-dashboard.png)
-
-**Dashboard (Admin View)**
-![Admin Dashboard](path/to/admin-dashboard.png)
-
-**Laundry Schedule & Mess Menu**
-![Mess Menu](path/to/mess-menu.png)
-
----
-
 ## Features
 
 - **User Authentication** — Admin and student logins
