@@ -1,192 +1,177 @@
-# VIT MESS Management System
 
-A comprehensive hostel mess management system for VIT students featuring laundry schedules, meal menus, and user authentication.
+# VIT Mess Management System
 
-## Quick Start in VSCode
+![GitHub Repo stars](https://img.shields.io/github/stars/Darshcmd/messmanagement?style=social)
+![GitHub issues](https://img.shields.io/github/issues/Darshcmd/messmanagement)
+![GitHub license](https://img.shields.io/github/license/Darshcmd/messmanagement)
+![GitHub last commit](https://img.shields.io/github/last-commit/Darshcmd/messmanagement)
 
-### 1. Install Backend Dependencies
-Open terminal in VSCode:
-```bash
-cd backend
-npm install
-```
+A **full-stack hostel mess management system** for VIT students to view weekly mess menus, laundry schedules, and manage user access through authentication.
 
-### 2. Install Frontend Dependencies
-Open another terminal in VSCode:
-```bash
-cd frontend
-npm install
-```
+---
 
-### 3. Initialize MySQL Database (One-time only)
-Execute `database/init.sql` in your MySQL client .
+## Screenshots
 
-### 4. Start Backend Server
-Terminal 1:
-```bash
-cd backend
-node index.js
-```
-Expected: `Server running on port 4000`
+**Dashboard (Student View)**
+![Student Dashboard](path/to/student-dashboard.png)
 
-### 5. Start Frontend Dev Server
-Terminal 2:
-```bash
-cd frontend
-npm run dev
-```
-Expected: `http://localhost:3000/`
+**Dashboard (Admin View)**
+![Admin Dashboard](path/to/admin-dashboard.png)
 
-### 6. Open Application
-Visit: **http://localhost:3000** in your browser
+**Laundry Schedule & Mess Menu**
+![Mess Menu](path/to/mess-menu.png)
 
-## Login Credentials
+---
 
-**Admin:**
-- Username: `admin`
-- Password: `admin123`
+## Features
 
-**Student:**
-- Username: any value
-- Password: any value
+- **User Authentication** — Admin and student logins
+- **Role-Based Views** — Different content for admins and students
+- **Weekly Mess Menu** — Rotating menus by gender
+- **Laundry Schedule** — View hostel laundry status
+- **Admin Panel** — Manage users, menus, and schedules
+- **Responsive UI** — Works on desktop and mobile
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React.js, Vite |
+| Backend | Node.js, Express.js |
+| Database | MySQL |
+| Authentication | Session-based |
+| Styling | CSS / SCSS |
+
+---
 
 ## Project Structure
 
 ```
-├── backend/              # Express.js API server
-│   ├── index.js         # Server entry point
-│   ├── mysql.js        # Database connection
-│   ├── routes/          # API endpoints
-│   └── .env             # Database config
+messmanagement/
+├── backend/             # Express.js API Server
+│   ├── index.js         # Entry point
+│   ├── mysql.js         # MySQL connector
+│   └── routes/          # API routes
 ├── frontend/            # React + Vite app
-│   ├── src/App.jsx      # Main component
-│   ├── index.html       # Entry point
+│   ├── src/             # Source files
 │   └── vite.config.js   # Vite config
-└── database/init.sql    # Database schema & data
+├── database/            # Database schema & data
+│   └── init.sql         # Initialization script
+└── README.md
 ```
 
-## Features
+---
 
-- **Student Dashboard**: View laundry schedules (blocks A-E) and meal menus
-- **Separate Menus**: Men and Women meal variations (Veg, Non-Veg)
-- **Weekly Rotation**: 2-week meal cycle with daily options
-- **Admin Panel**: Manage data and view system info
+## Getting Started
 
-## Database
+### 1. Clone the repository
 
-**laundry_schedule**: 120+ records covering all blocks and dates
-**mess_menu**: 100+ menu entries across 2 weeks, 2 genders, 3 categories
-
-## Troubleshooting
-
-**Port 3000 in use:**
-```
-Edit frontend/vite.config.js → server: { port: 3001 }
-```
-
-**Database connection fails:**
-- Verify MySQL running on localhost:3306 and DB vitmess
-- Check backend/.env credentials
-- Run database/init.sql 
-
-**Module errors:**
 ```bash
-rm -rf node_modules
+git clone https://github.com/Darshcmd/messmanagement.git
+cd messmanagement
+```
+
+### 2. Install Dependencies
+
+**Backend**
+```bash
+cd backend
 npm install
 ```
 
-```sql
--- Check table row counts
-SELECT 'laundry_schedule' as table_name, COUNT(*) as rows FROM laundry_schedule
-UNION ALL
-SELECT 'mess_menu', COUNT(*) FROM mess_menu;
-
--- Expected: laundry_schedule = 162, mess_menu = 56
+**Frontend**
+```bash
+cd frontend
+npm install
 ```
 
-## Performance
+### 3. Configure MySQL Database
 
-- **Laundry records**: 162
-- **Mess records**: 56 (7 days × 2 genders × 4 meal types avg)
-- **DB queries**: Sub-100ms typical response time
-- **Frontend bundle**: ~200KB (React + Vite optimized)
+Start your MySQL server, then run the initialization script:
+
+```sql
+SOURCE database/init.sql;
+```
+
+Create a `.env` file inside `backend/`:
+
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=messmanagement
+PORT=4000
+```
+
+### 4. Run the Application
+
+**Backend**
+```bash
+cd backend
+node index.js
+```
+
+**Frontend**
+```bash
+cd frontend
+npm run dev
+```
+
+Open your browser at `http://localhost:3000`
+
+---
+
+## Default Login Credentials
+
+| Role | Username | Password |
+|---|---|---|
+| Admin | `admin` | `admin123` |
+| Student | `student1` | `student123` |
+
+---
 
 ## Future Enhancements
 
-- JWT authentication with refresh tokens
+- JWT authentication for secure login
 - User profile management
-- Notification system for schedule changes
-- Multi-language support
-- Dark mode toggle
-- Mobile app (React Native)
-- Analytics dashboard
-- Email notifications
+- Real-time notifications for menu and laundry changes
+- Analytics dashboard for admin
+- Mobile app (iOS/Android)
+- Email alerts for schedule updates
+
+---
+
+## Contributing
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -m 'Add feature'`
+4. Push to the branch: `git push origin feature-name`
+5. Open a Pull Request
+
+---
+
+## Troubleshooting
+
+**Port 3000 or 4000 in use** — Change ports in `vite.config.js` or `backend/.env`
+
+**Database connection fails** — Ensure MySQL is running and `.env` credentials are correct
+
+**Frontend not loading** — Run `npm install` again and restart the dev server
+
+---
 
 ## License
 
-Educational - VIT Vellore
-
-## Support
-
-For issues or questions, check logs:
-```bash
-# Backend logs
-cat backend/.env  # Check config
-node backend/index.js  # Watch console output
-
-# Frontend errors
-Open browser DevTools (F12)
-```
+This project is for educational purposes at VIT Vellore.
 
 ---
 
-**Status**: ✅ Production-ready minimal build, ready for deployment
+## Contact
 
-
-Ah — the error says **port 4000 is already in use** (`EADDRINUSE`).
-That means another process (maybe another instance of your backend) is already running on that port.
-
-Here’s how to fix it on Mac:
-
----
-
-# Step 1 — Find the process using port 4000
-
-```bash
-lsof -i :4000
+**Developer:** Darsh Soni  
+**GitHub:** [@Darshcmd](https://github.com/Darshcmd)  
+**Email:** soni.darsh2004@gmail.com
 ```
-
-You’ll see something like:
-
-```
-COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
-node     1234 darsh   12u  IPv6 0x123456789      0t0  TCP *:4000 (LISTEN)
-```
-
-Take note of the **PID** (here `1234`).
-
----
-
-# Step 2 — Kill the process
-
-```bash
-kill -9 1234
-```
-
-Replace `1234` with the actual PID from your system.
-
----
-
-# Step 3 — Start backend again
-
-```bash
-npm start
-```
-
-It should now start without errors:
-
-```
-Server running on http://localhost:4000
-```
-
----
